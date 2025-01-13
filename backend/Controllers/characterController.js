@@ -40,15 +40,16 @@ const deleteCharacter = async (req, res) => {
 };
 
 const searchCharacter = async (req, res) => {
-    try {
-      const { name } = req.query;
-      const character = await Character.findOne({ name: new RegExp(name, 'i') }); // Búsqueda insensible a mayúsculas
-      if (!character) return res.status(404).json({ message: 'Character not found' });
-      res.json(character);
-    } catch (error) {
-      res.status(500).json({ message: error.message });
-    }
-  };
+  try {
+    const { name } = req.query;
+    const character = await Character.findOne({ name: new RegExp(name, 'i') }); // Búsqueda insensible a mayúsculas
+    if (!character) return res.status(404).json({ message: 'Character not found' });
+    res.json(character);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
-  
-  module.exports = { getCharacters, createCharacter, updateCharacter, deleteCharacter, searchCharacter };
+
+
+module.exports = { getCharacters, createCharacter, updateCharacter, deleteCharacter, searchCharacter };
